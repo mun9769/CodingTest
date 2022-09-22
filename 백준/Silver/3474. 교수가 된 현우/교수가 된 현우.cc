@@ -1,63 +1,23 @@
-#include <iostream>
-#include <algorithm>
-#include <map>
-#include <vector>
-#include <cstring>
-#include <queue>
-#include <set>
+#include <bits/stdc++.h>
 using namespace std;
-#define ii pair<int,int>
-
-int T;
-set<int> s;
-map<int, int> m;
-queue<int> q;
-
-vector<int> fives;
-
-int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-	int tmp = 5;
-	while (tmp > 0 && tmp < 1'000'000'001) {
-		fives.push_back(tmp);
-		tmp *= 5;
-	}
-
-	cin >> T;
-	int t = T;
-	while (t-- > 0) {
-		int num;
-		cin >> num;
-		s.insert(num);
-		q.push(num);
-	}
-
-	int twoCnt = 0;
-	int fiveCnt = 0;
-
-	auto iter = s.begin();
-	vector<ii> v;
-	for (auto iter = s.begin(); iter != s.end(); iter++) {
-		int number = *iter - *iter % 5;
-		v.push_back({ *iter, number });
-	}
-	for (auto ele : v) {
-		int sum = 0;
-		for (int i = 0; i < fives.size(); i++) {
-			int target = ele.second;
-			int cnt = target / fives[i];
-			if (cnt == 0) break;
-			sum += target / fives[i];
+#define sz(x) ((int)(x).size())    
+#define f first
+#define s second
+typedef unsigned long long ll;      
+int n, a;
+int main () {
+	ios_base::sync_with_stdio(false);cin.tie(NULL); cout.tie(NULL);
+	cin >> n; 
+	for(int i = 0; i < n; i++){
+		cin >> a; 
+		int ret2 = 0, ret5 = 0;
+		for(int j = 2; j <= a; j *= 2){
+			ret2 += a / j;  
 		}
-		m[ele.first] = sum;
-	}
-
-	while (T-- > 0) {
-		int a = q.front();
-		q.pop();
-
-		cout << m[a] << "\n";
-	}
+		for(int j = 5; j <= a; j *= 5){
+			ret5 += a / j; 
+		}
+		cout << min(ret2, ret5) << "\n";
+	} 
+	return 0;
 }
