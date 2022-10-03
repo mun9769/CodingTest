@@ -1,11 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <cstring>
-#include <unordered_map>
+#include <stack>
 using namespace std;
-
-
-#define ii pair<int, int>
 
 enum State {
 	onRoad,
@@ -17,20 +13,14 @@ enum State {
 };
 int sum = 0;
 
-
 int road[30];
-
 int tenRoad[30] = { 10,13,16,19, };
-
 int twentyRoad[30] = { 20,22,24,};
-
 int thirtyRoad[30] = { 30,28,27,26, };
-
 int lastRoad[20] = { 25, 30, 35, 40 };
 
 pair<int, State> posManager[4];
 
-#include <stack>
 class Knight {
 public:
 	int id = 0;
@@ -40,10 +30,8 @@ public:
 	stack<pair<int, State>> trace;
 
 public:
-
 	void back(){
 		auto prev = trace.top();
-
 		switch (prev.second) {
 			case State::onRoad:
 				sum -= road[this->pos];
@@ -68,7 +56,6 @@ public:
 		this->pos = now.first;
 		state = now.second;
 		posManager[id] = now;
-
 	}
 
 	bool move(int dice) {
@@ -175,18 +162,16 @@ void dfs(int index) {
 		result = max(result, sum);
 		return;
 	}
-	
 
-		for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) {
+		if (knights[i].state == State::done) 
+			continue;
+		if (knights[i].move(dice[index]) == false) 
+			continue; 
 
-			if (knights[i].state == State::done) continue;
-
-			if (knights[i].move(dice[index]) == false) {
-				continue;
-			}
-			dfs(index + 1);
-			knights[i].back();
-		}
+		dfs(index + 1);
+		knights[i].back();
+	}
 
 }
 
@@ -197,7 +182,6 @@ int main() {
 
 	for (int i = 0; i <= 20; i++)
 		road[i] = i * 2;
-
 
 	for (int i = 0; i < 4; i++) {
 		knights[i] = Knight();
