@@ -26,27 +26,14 @@ void go(int here, int _num) {
 		result = max(result, _num);
 		return;
 	}
-
-	int b = num[here + 1];
-	int calc = oper(oper_str[here], _num, b);
-
-	if (here == num.size() - 2) 
-		result = max(result, calc);
-
 	go(here + 1, oper(oper_str[here], _num, num[here + 1]));
 
 	if (here >= num.size() - 2)
 		return;
 
-	int c = num[here + 2];
-	calc = oper(oper_str[here + 1], b, c);
+	int calc = oper(oper_str[here + 1], num[here + 1], num[here + 2]);
 
-	int calcTwo = oper(oper_str[here], _num, calc);
-
-	if (here == num.size() - 3) 
-		result = max(result, calcTwo);
-
-	go(here + 2, calcTwo);
+	go(here + 2, oper(oper_str[here], _num, calc));
 }
 
 
