@@ -1,60 +1,47 @@
 #include <iostream>
-#include <algorithm>
-#include <cmath>
 #include <queue>
-#include <vector>
-#include <map>
-#include <set>
-#include <string>
+#include <cmath>
 using namespace std;
-#define fastio ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
-#define ll long long
-
-vector<int> level[11];
 
 int K;
-vector<int> rules[22];
+int node[2000];
+vector<int> levels[12];
+
+// go(0, treeCnt, 0
+void go(int l, int r, int depth) {
+
+    if (l == r) {
+		levels[depth].push_back(node[l]);
+        return;
+    }
+
+    int middle = (l + r) / 2;
+    levels[depth].push_back(node[middle]);
+
+    go(l, middle - 1, depth + 1);
+    go(middle+1, r, depth + 1);
+}
 
 int main() {
-	fastio;
-	cin >> K;
-	vector<int> v{ -1,1 };
-	rules[2] = { -1,1 };
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
-	for (int i = 2; i < 11; i++) {
-		for (int j = 0; j < (int)rules[i].size(); j++) {
-			rules[i + 1].push_back(rules[i][j]);
-		}
-		rules[i + 1].push_back(-i);
-		rules[i + 1].push_back(i);
+    cin >> K;
+    int treeCnt = pow(2, K) - 1;
 
-		for (int j = 0; j < (int)rules[i].size(); j++) {
-			rules[i + 1].push_back(rules[i][j]);
-		}
-	}
+    for (int i = 0; i < treeCnt; i++) {
+        cin >> node[i];
+    }
 
-	if (K == 1) {
-		int num;
-		cin >> num;
-		cout << num;
-	}
+    go(0, treeCnt - 1, 1);
 
-	int here = K;
-	int cnt = pow(2, K) - 1;
-	for(int i=0; i < cnt; i++){
-		int num; 
-		cin >> num;
+    for (int i = 1; i <= K; i++) {
+        for (int ele : levels[i]) {
+            cout << ele << ' ';
+        }
+        cout << '\n';
+    }
 
-		level[here].push_back(num);
-
-		if(i < cnt -1)
-			here += rules[K][i];
-	}
-	for (int i = 1; i <= K; i++) {
-		for (auto i : level[i])
-		{
-			cout << i << " ";
-		}
-		cout << '\n';
-	}
+    return 0;
 }
