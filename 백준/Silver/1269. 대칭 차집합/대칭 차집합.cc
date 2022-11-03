@@ -17,20 +17,20 @@ int b[200'003];
 int main() {
 	init;
 	cin >> n >> m;
-	int num;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	for (int i = 0; i < m; i++)
+		cin >> b[i];
 
-	for (int i = 0; i < n; i++) {
-		cin >> num;
-		s.insert(num);
-	}
+	sort(b, b + m);
 
 	int inter = 0;
+	for (int i = 0; i < n; i++) {
+		int here = a[i];
 
-	for (int i = 0; i < m; i++) {
-		cin >> num;
-		if (s.count(num)) inter++;
+		auto iter = lower_bound(b, b + m, here);
+		if (*iter == here) inter++;
 	}
 	cout << n + m - 2 * inter;
-
 
 }
