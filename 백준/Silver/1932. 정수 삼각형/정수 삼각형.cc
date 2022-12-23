@@ -13,7 +13,6 @@ using namespace std;
 
 int table[502][502];
 
-int dp[502][502];
 int n;
 
 int main() {
