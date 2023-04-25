@@ -85,13 +85,13 @@ vector<int> solution(vector<long long> numbers) {
 
       if(bfs(bin)) answer.push_back(1);
       else answer.push_back(0);
-
     }
+    for(auto ele : answer) cout << ele;
     return answer;
 }
 
 int main() {
-  for(auto a : solution({5})){
+  for(auto a : solution({8})){
     cout << a;
   }
 }
