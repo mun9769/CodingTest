@@ -1,97 +1,62 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <vector> 
 #include <queue>
-#include <set>
-#include <map>
-#include <math.h>
 using namespace std;
 
-#define ll long long
-#define iii tuple<int, int, int>
 #define ii pair<int, int>
 
-vector<long long> _numbers;
+int par[200];
 
-ll numPow(int n) {
-  ll ret = 0;
-  while(n > 1){
-    ret++;
-    n = n / 2;
-  }
-  return ret;
-}
-
-vector<ll> tenToTwo(ll n){
-  vector<ll> s;
-  while(n > 1){
-    s.push_back(n % 2);
-    n = n / 2;
-  }
-  s.push_back(n);
-  return s;
-}
-
-void sizeFit(vector<ll>& v){ // 음...
-  int vSize = v.size();
-  if(vSize == 1) return;
-
-  int cnt = numPow(vSize); // 형변환 잘 되겠지?
-  cnt++;
-
-  int t = pow(2, cnt) - 1 - vSize;
-
-  for(int i=0; i < t; i++){
-    v.push_back(0);
-  }
-
-}
-
-bool bfs(vector<ll>& v) {
-  queue<int> q;
-  int mid = v.size() / 2;
-  q.push(mid);
-  int cnt = v.size() + 1;
-  int k = numPow(cnt);
-
-  k = pow(2, k - 2);
-
-  while(q.size()){
-    int qSize = q.size();
-    if(k == 0) break;
-    for(int i=0; i<qSize; i++){
-      int here = q.front();
-      q.pop();
-
-      for(auto there : {here - k, here + k}){
-        q.push(there);
-        if(v[here] == 0 && v[there] == 1) 
-          return false;
-      }
-    }
-    k = k / 2;
+bool chk(vector<int>& gogo){
+  int n = gogo.size(); // 1 3 7 15 31 63
+  if(!gogo[n/2]) return false;
+  for(int i=0; i<n; i++){
+    if(i == n/2) continue;
+    if(!gogo[i]) continue;
+    if(gogo[i] && !gogo[par[i+1]-1]) return false;
   }
   return true;
-
 }
 
-
-
-vector<int> solution(vector<long long> numbers) {
-    vector<int> answer;
-    for(auto num : numbers){
-      vector<ll> bin = tenToTwo(num);
-      sizeFit(bin);
-
-      if(bfs(bin)) answer.push_back(1);
-      else answer.push_back(0);
+vector<int> solution(vector<long long> numbers){
+  par[1] = 2;
+  par[3] = 2;
+  int cur = 3;
+  while(cur <= 31){
+    for(int i=1; i<=cur; i++){
+      par[i + cur + 1] = par[i] + (cur+1);
     }
-    for(auto ele : answer) cout << ele;
-    return answer;
-}
 
-int main() {
-  for(auto a : solution({8})){
-    cout << a;
+    par[(cur+1)/2] = cur + 1;
+    par[3*(cur+1)/2] = cur + 1;
+
+    cur = cur * 2 + 1;
   }
+
+  vector<int> ret;
+  for(auto num: numbers){
+    vector<int> z;
+    while(num){
+      z.push_back(num%2);
+      num/=2;
+    }
+
+    bool possible = false;
+    for(auto sz : {1,3,7,15,31,63}){
+      if(z.size() > sz) continue;
+      vector<int> gogo = z;
+      while(gogo.size() < sz) gogo.push_back(0);
+      if(chk(gogo)){
+        possible = true;
+        break;
+      }
+      else{ break;}
+        
+    }
+    if(possible) ret.push_back(1);
+    else ret.push_back(0);
+  }
+    
+
+    return ret;
 }
