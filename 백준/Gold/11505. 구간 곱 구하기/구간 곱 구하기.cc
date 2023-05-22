@@ -16,7 +16,7 @@ typedef long long ll;
  
 int n, m, k;
 ll arr[1000001];
-vector<ll> tree;
+vector<ll> tree(4'000'000);
  
 ll make_tree(int node, int start, int end)
 {
@@ -65,7 +65,7 @@ int main()
     for (int i = 1; i <= n; i++)
         cin >> arr[i];
  
-    tree.resize(n * 4);
+    // tree.resize(n * 4);
  
     make_tree(1, 1, n);
  
