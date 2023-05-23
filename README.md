@@ -31,16 +31,14 @@
 - Fullscreen mode
 - Cross platform
 
-</br>
 ## Tech Stack
 
 **Client:** SwiftUI, Xcode
 
 **Server:** Firebase FireStore
 
-</br>
 ## Folder Structure
-### 🗂 Folder Structure
+
 ```
 Ssok
 │ 
@@ -95,8 +93,7 @@ Ssok
 
 
 ```
-
-</br>## Authors
+## Authors
 
 <div align="center"> 
   
