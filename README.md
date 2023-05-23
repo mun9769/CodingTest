@@ -1,7 +1,7 @@
 
 # MC2-GOOSUKGOOSUK
 ![App Screen](https://github.com/mun9769/CodingTest/assets/59304977/115084a8-c86f-4ce5-86dd-23a8bfdef6ce)
-
+</br>
 ## Screenshot-description
 
 <style>
@@ -21,6 +21,7 @@
 
 </div>
 
+</br>
 ## Features
 
 ### Talk Screen
@@ -30,14 +31,14 @@
 - Fullscreen mode
 - Cross platform
 
-
+</br>
 ## Tech Stack
 
 **Client:** SwiftUI, Xcode
 
 **Server:** Firebase FireStore
 
-
+</br>
 ## Folder Structure
 ### 🗂 Folder Structure
 ```
@@ -94,6 +95,8 @@ Ssok
 
 
 ```
+
+</br>## Authors
 
 <div align="center"> 
   
