@@ -1,30 +1,14 @@
 
 # MC2-GOOSUKGOOSUK
-![App Screen](https://github.com/mun9769/CodingTest/assets/59304977/115084a8-c86f-4ce5-86dd-23a8bfdef6ce)
+![App Poster](https://github.com/mun9769/CodingTest/assets/59304977/72caf2ec-2bd0-48ea-8589-fe43252808b8)
 </br>
-## Screenshot-description
-
-<style>
-  .flex{
-    display: flex;
-    justify-content: space-around;
-  }
-</style>
-
-<div class="flex">
-
-<img src="https://github.com/mun9769/CodingTest/assets/59304977/5c8fb48b-bd24-4d8c-b0d0-54a860cae04e" alt="Image" width="200" height="200" >
-
-<img src="https://github.com/mun9769/CodingTest/assets/59304977/5c8fb48b-bd24-4d8c-b0d0-54a860cae04e" alt="Image" width="200" height="200">
-
-<img src="https://github.com/mun9769/CodingTest/assets/59304977/5c8fb48b-bd24-4d8c-b0d0-54a860cae04e" alt="Image" width="200" height="200">
-
-</div>
-
 </br>
+
+## Description
+"Image"
+
+
 ## Features
-
-### Talk Screen
 
 - 가족과 매일매일 
 - Live previews
@@ -40,56 +24,35 @@
 ## Folder Structure
 
 ```
-Ssok
-│ 
-├── Global
-│   ├── Extension
-│       └── View+
+Living
 │ 
 ├── Model
-    ├── Member.swift
-    ├── Where.swift
-    ├── What.swift
-    ├── ScreenSize.swift
-    ├── Who.swift
-    ├── ARModel.swift
-    ├── NavLink.swift
-└── ViewModel
-    ├── StrawViewModel.swift
-    └── GatchaViewModel.swift
-    └── IntroViewModel.swift
-    └── AddMemberViewModel.swift
-    └── RandomMember.swift
-    └── SpeechRecognizer.swift
-    └── SoundMeter.swift
-    └── SoundManger.swift
-    └── ARViewModel.swift
-    └── Permission.swift
-    └── NaviViewModel.swift
-├── Views
-    ├── Ending
-        └── DecibelEndingView.swift
-        └── CameraEndingView.swift
-        └── CountEndingView.swift
-        └── SpeakEndingView.swift
-    └── Recycle
-        └── WhiteRectangleView.swift
-        └── MissionTopView.swift
-        └── MissionTitleView.swift
-        └── MissionCompleteView.swift
-        └── MissionCameraCompleteView
-    └── IntroView.swift
-    └── AddMemberView.swift
-    └── BottleView.swift
-    └── StrawView.swift
-    └── BallView.swift
-    └── MissionDecibelView.swift
-    └── MissionPedometerView.swift
-    └── MissionSmileView.swift
-    └── MissionSpeechView.swift
-    └── CameraView.swift
-└── _BubblesApp.swift
-└── AppDelegate.swift
+    ├── DateValue.swift
+    ├── GlobalVariables.swift
+    ├── Task.swift
+├── View
+    ├── In Calendar
+        ├── CalendarView.swift
+        └── TaskAddView.swift
+    ├── In Login
+        ├── LoginEmojiView.swift
+        └── LoginView.swift
+    ├── In Question
+        ├── AddQuestionView.swift
+        ├── HelpPopupView.swift
+        ├── QuestionEditingView.swift
+        ├── QuestionView.swift
+        └── WaitingQuestionView.swift
+    └── In Talk
+        ├── AnswerTextData.swift
+        ├── MessageBlockView.swift
+        ├── MessageBubbleView.swift
+        ├── MessageShowingView.swift
+        ├── PreviousQuestionNameView.swift
+        ├── TalkView.swift
+        └── TodayQuestionView.swift
+└── LivingApp.swift
+
 
 
 ```
@@ -103,3 +66,4 @@ Ssok
 
   
 </div>
+
