@@ -8,23 +8,14 @@ int ans;
 
 
 bool chk(int x, int y){
-  for(int i=1; i<=n; i++){
-    if(board[x][i]) return false;
-  }
-  for(int i=1; i<=n; i++){
-    if(board[i][y]) return false;
-  }
-  for(int i=1; i<=n; i++){
-    if(x+i > n || y+i > n) break;
-    if(board[x+i][y+i]) return false;
-  }
+  // 가로 세로에 퀸이 있는지 확인
+  for(int i=1; i<=n; i++){ if(board[x][i]) return false; }
+  for(int i=1; i<=n; i++){ if(board[i][y]) return false; }
+
+  // 대각선에 퀸이 있는지 확인
   for(int i=1; i<=n; i++){
     if(x-i < 1 || y-i < 1) break;
     if(board[x-i][y-i]) return false;
-  }
-  for(int i=1; i<=n; i++){
-    if(x+i > n || y-i < 1) break;
-    if(board[x+i][y-i]) return false;
   }
   for(int i=1; i<=n; i++){
     if(x-i < 1 || y+i > n) break;
@@ -44,8 +35,6 @@ void dfs(int target){
       board[target][i] = false;
     }
   }
-
-  
 }
 
 int main(){
