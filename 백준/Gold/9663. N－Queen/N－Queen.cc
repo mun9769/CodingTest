@@ -9,7 +9,6 @@ int ans;
 
 bool chk(int x, int y){
   // 가로 세로에 퀸이 있는지 확인
-  for(int i=1; i<=n; i++){ if(board[x][i]) return false; }
   for(int i=1; i<=n; i++){ if(board[i][y]) return false; }
 
   // 대각선에 퀸이 있는지 확인
