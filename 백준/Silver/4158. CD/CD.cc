@@ -19,15 +19,16 @@ int main(){
     cin >> n >> m;
     if(n == 0 and m == 0) break;
     int ans = 0;
+    vector<int> v;
 
-    unordered_set<int> us;
     for(int i=0; i<n; i++){
       int a; cin >> a;
-      us.insert(a);
+      v.push_back(a);
     }
     for(int i=0; i<m; i++){
       int a; cin >> a;
-      if(us.count(a)) ans++;
+      auto iter = lower_bound(v.begin(), v.end(), a);
+      if(*iter == a) ans++;
     }
     cout << ans << ' ';
 
