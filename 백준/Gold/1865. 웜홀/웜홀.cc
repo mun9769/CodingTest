@@ -25,7 +25,6 @@ bool bellman_ford(){
 
       if(dist[en] > dist[st] + cost){
         dist[en] = dist[st] + cost;
-        if(i == n+1) return false;
       }
     }
   }
