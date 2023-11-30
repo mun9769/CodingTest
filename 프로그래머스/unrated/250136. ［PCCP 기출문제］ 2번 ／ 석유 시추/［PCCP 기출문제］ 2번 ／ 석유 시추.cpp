@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ii pair<int, int>
 
 int land[504][505];
 bool visited[505][505];
@@ -54,7 +53,8 @@ int solution(vector<vector<int>> _land) {
             mx = j;
             int oils = drill(i, j);
             
-            for(int k = mn; k<=mx; k++) store[k] += oils;
+            for(int k = mn; k <= mx; k++)
+                store[k] += oils;
         }
     }
     
