@@ -4,13 +4,16 @@
 using namespace std;
 
 int solution(int n, int m, vector<int> section) {
-    int answer = 0;
-    int cur = section[0];
-    auto iter = section.begin();
+    int answer = 1;
+    int done = section[0] + m;
     
-    while(iter != section.end()) {
+	for(int i=0; i<section.size(); i++){
+        if(section[i] < done) continue;
+        
+        done = section[i] + m;
         answer++;
-        iter = lower_bound(section.begin(), section.end(), *iter + m);
     }
+    
+    
     return answer;
 }
