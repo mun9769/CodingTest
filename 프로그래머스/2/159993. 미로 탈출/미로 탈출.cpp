@@ -9,8 +9,7 @@ queue<ii> q;
 vector<string> maps;
 ii start_point;
 int n, m;
-const int dx[] = {1, 0, -1, 0};
-const int dy[] = {0, -1, 0, 1};
+vector<ii> offset = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
 bool canGo(int nx, int ny){
     if(nx < 0 || ny < 0 || nx >= n || ny >= m) return false;
@@ -36,8 +35,8 @@ int bfs(Destination d) {
         q.pop();
         
         for(int i=0; i<4; i++){
-            int nx = x + dx[i];
-            int ny = y + dy[i];
+            int nx = x + offset[i].first;
+            int ny = y + offset[i].second;
             if(canGo(nx, ny)){
                 q.push({nx, ny});
                 visited[nx][ny] = visited[x][y] + 1;
