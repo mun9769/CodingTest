@@ -1,12 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+
 enum event {
     release, enter, 
 };
 using task = pair<int, event>;
 
-priority_queue<task, vector<task>, greater<task>> schedule; // TODO: event의 우선순위 정하기
+struct CompareTask {
+    bool operator()(task& lhs, task& rhs) {
+        if(lhs.first == rhs.first) {
+            return lhs.second > rhs.second;
+        }
+        
+        return lhs.first > rhs.first;
+    }
+};
+
+
+
+priority_queue<task, vector<task>, CompareTask> schedule;
 
 int to_minute(string s) {
     string hour = s.substr(0, 2);
