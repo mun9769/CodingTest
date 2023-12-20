@@ -27,8 +27,16 @@ vector<long long> solution(vector<long long> numbers) {
     vector<long long> answer;
     
     for(auto x: numbers) {
-        auto f_x = x + diff(x);
-        answer.push_back(f_x);
+        long long bit = 1;
+        while( x & bit ) bit <<= 1;
+        
+        long long diff = bit >> 1;
+        if(bit == 1) diff = 1;
+        long long fx = x + diff;
+        
+        if(fx < 0 or diff < 0) throw std::logic_error("");
+        
+        answer.push_back(fx);
     }
     return answer;
 }
