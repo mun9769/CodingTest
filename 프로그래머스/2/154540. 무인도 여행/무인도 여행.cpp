@@ -49,8 +49,8 @@ vector<int> solution(vector<string> _maps) {
     for(int i=0; i<n; i++){
         for(int j=0; j<m; j++){
             if(canGo({i, j})) {
-                int meal = recursive({i, j});
-                answer.push_back(meal);
+                int food = recursive({i, j});
+                answer.push_back(food);
             }
         }
     }
