@@ -5,15 +5,8 @@ using ii = pair<int, int>;
 
 
 int main() {
+    cin.tie(0) -> sync_with_stdio(0);
     int test_case;
-//    multiset<int> ts;
-//    ts.insert(2);
-//    ts.insert(2);
-//    ts.insert(2);
-//
-//    ts.erase(ts.begin());
-//
-//    cout << ts.size();
     cin >> test_case;
     while(test_case-- > 0) {
 
@@ -39,9 +32,9 @@ int main() {
         }
 
         if(dpq.empty())
-            cout << "EMPTY" << endl;
+            cout << "EMPTY" << '\n';
         else {
-            cout << *dpq.rbegin() << ' ' << *dpq.begin() << endl;
+            cout << *dpq.rbegin() << ' ' << *dpq.begin() << '\n';
         }
     }
 }
