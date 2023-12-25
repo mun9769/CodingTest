@@ -28,11 +28,12 @@ void setup() {
 ll dfs(int cur) {
     if(min_cost[cur] != LLONG_MAX) return min_cost[cur];
 
-    ll result = price[cur] * sum_dist[cur]; // 현재에서 쭉 달리면 나오는 가격
+    ll result = price[cur] * (ll)sum_dist[cur]; // 현재에서 쭉 달리면 나오는 가격
 
     for(int i = cur+1; i<n-1; i++) {
-        int goal_dist = sum_dist[cur] - sum_dist[i];
+        ll goal_dist = sum_dist[cur] - sum_dist[i];
         ll need_money = goal_dist * price[cur];
+
         result = min(result,
                      dfs(i) + need_money);
     }
@@ -42,5 +43,8 @@ ll dfs(int cur) {
 
 int main() {
     setup();
-    cout << dfs(0);
+    bool all_ones = std::all_of(price, price + n-1, [](int x) { return x == 1; });
+    if(all_ones) cout << sum_dist[0];
+    else cout << dfs(0) << endl;
+
 }
