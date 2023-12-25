@@ -18,6 +18,24 @@ ii offsets(Query q) {
 
     throw std::logic_error("");
 }
+Side toSide(Query q) {
+    if(q == go_east) return Side::east;
+    if(q == go_west) return Side::west;
+    if(q == go_north) return Side::north;
+    if(q == go_south) return Side::south;
+
+    throw std::logic_error("");
+}
+Side toCounter(Side s) {
+    if(s == north) return Side::south;
+    if(s == south) return Side::north;
+    if(s == west) return Side::east;
+    if(s == east) return Side::west;
+    if(s == up) return Side::down;
+    if(s == down) return Side::up;
+    
+    throw std::logic_error("");
+}
 
 int n, m;
 int k;
@@ -29,44 +47,21 @@ public:
     map<Side, int> rectangle;
     int x, y;
 
+    void real_go(Query q) {
+    }
+
     void go(int nx, int ny, Query query) {
         if(nx < 0 || ny < 0 || nx >= n || ny >= m) return;
+        Side goal = toSide(query);
+        Side counter = toCounter(goal);
 
-        if(query == go_south) {
-            if(board[nx][ny] == 0) { board[nx][ny] = rectangle[south]; }
-            else { rectangle[south] = board[nx][ny]; board[nx][ny] = 0; }
+        if(board[nx][ny] == 0) { board[nx][ny] = rectangle[goal]; }
+        else { rectangle[goal] = board[nx][ny]; board[nx][ny] = 0; }
 
-            swap(rectangle[down], rectangle[south]);
-            swap(rectangle[south], rectangle[up]);
-            swap(rectangle[up], rectangle[north]);
-        }
-        else if(query == go_north) {
-            if(board[nx][ny] == 0) { board[nx][ny] = rectangle[north]; }
-            else { rectangle[north] = board[nx][ny]; board[nx][ny] = 0; }
-
-            swap(rectangle[down], rectangle[north]);
-            swap(rectangle[north], rectangle[up]);
-            swap(rectangle[up], rectangle[south]);
-        }
-        else if(query == go_east) {
-            if(board[nx][ny] == 0) { board[nx][ny] = rectangle[east]; }
-            else { rectangle[east] = board[nx][ny]; board[nx][ny] = 0; }
-
-            swap(rectangle[down], rectangle[east]);
-            swap(rectangle[east], rectangle[up]);
-            swap(rectangle[up], rectangle[west]);
-
-
-        }
-        else if(query == go_west) {
-            if(board[nx][ny] == 0) { board[nx][ny] = rectangle[west]; }
-            else { rectangle[west] = board[nx][ny]; board[nx][ny] = 0; }
-
-            swap(rectangle[down], rectangle[west]);
-            swap(rectangle[west], rectangle[up]);
-            swap(rectangle[up], rectangle[east]);
-        }
-
+        swap(rectangle[down], rectangle[goal]);
+        swap(rectangle[goal], rectangle[up]);
+        swap(rectangle[up], rectangle[counter]);
+        
         x = nx; y = ny;
         cout << rectangle[up] << '\n';
     }
