@@ -14,8 +14,7 @@ int main() {
 
     for(int i=1; i<=t; i++) {
         dp[i][0][1] = dp[i-1][0][1] + (zadu[i] == 1 ? 1 : 0);
-        for(int w=1; w<=max_w; w++) {
-            if(w > i) break;
+        for(int w=1; w<=min(max_w, i); w++) {
             if(zadu[i] == 1) {
                 dp[i][w][1] = max(dp[i - 1][w][1], dp[i - 1][w - 1][2]) + 1;
                 dp[i][w][2] = max(dp[i - 1][w][2], dp[i - 1][w - 1][1]);
