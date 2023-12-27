@@ -13,20 +13,17 @@ int main() {
     for(int i=1; i<=t; i++) cin >> zadu[i];
 
     for(int i=1; i<=t; i++) {
-
         dp[i][0][1] = dp[i-1][0][1] + (zadu[i] == 1 ? 1 : 0);
-
         for(int w=1; w<=max_w; w++) {
-            if(i < w) break;
+            if(w > i) break;
             if(zadu[i] == 1) {
                 dp[i][w][1] = max(dp[i - 1][w][1], dp[i - 1][w - 1][2]) + 1;
                 dp[i][w][2] = max(dp[i - 1][w][2], dp[i - 1][w - 1][1]);
             }
-            else{
+            else {
                 dp[i][w][1] = max(dp[i - 1][w][1], dp[i - 1][w - 1][2]);
                 dp[i][w][2] = max(dp[i - 1][w][2], dp[i - 1][w - 1][1]) + 1;
             }
-
         }
     }
 
