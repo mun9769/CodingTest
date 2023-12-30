@@ -11,6 +11,7 @@ int board[303][303];
 
 int main()
 {
+    cin.tie(0)->sync_with_stdio(0);
     cin >> n >> m;
     for(int u=1; u<=n; u++) for(int v=1; v<=m; v++) {
         cin >> board[u][v];
