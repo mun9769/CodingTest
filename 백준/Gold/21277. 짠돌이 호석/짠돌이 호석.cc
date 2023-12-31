@@ -39,40 +39,50 @@ void count_func(ii st) {
     st.second -= off;
 
     int min_area = INT32_MAX;
+    int width;
+    int height;
     if(possible[0]) {
-        int area = (n2 + st.first) * (m2 + st.second);
-        min_area = min(min_area, area);
+        width  = max(m1, m2 + st.second);
+        height = max(n1, n2 + st.first); // 수정한 코드
+        min_area = min(min_area, width * height);
     }
     if(possible[1]) {
-        int area = max(n2 + st.first, n1) * max(m2, m1 + m2 - st.second - 1);
-        min_area = min(min_area, area);
+        width  = max(m2, m1 + m2 - st.second - 1);
+        height = max(n1, n2 + st.first);
+        min_area = min(min_area, width * height);
     }
 
     if(possible[2]) {
-        int area = max(n2 + st.second, m1) * max(n1 + m2 - st.first - 1, n1);
-        min_area = min(min_area, area);
+        width  = max(m1, n2 + st.second);
+        height = max(n1, n1 + m2 - st.first - 1);
+        min_area = min(min_area, width * height);
     }
     if(possible[3]) {
-        int area = max(n2 + st.second, m1) * max(m2 + st.first, n1);
-        min_area = min(min_area, area);
+        width  = max(m1, n2 + st.second);
+        height = max(n1, m2 + st.first);
+        min_area = min(min_area, width * height);
     }
 
     if(possible[4]) {
-        int area = max(n1, n1 + n2 - st.first - 1) * max(m1, m1 + m2 - st.second - 1);
-        min_area = min(min_area, area);
+        width  = max(m1, m1+m2 - st.second -1);
+        height = max(n1, n1+n2 - st.first - 1);
+        min_area = min(min_area, width * height);
     }
     if(possible[5]) {
-        int area = max(n1, n1 + n2 - st.first - 1) * max(m2 + st.second, m1);
-        min_area = min(min_area, area);
+        width  = max(m1, m2 + st.second);
+        height = max(n1, n1+n2 - st.first - 1);
+        min_area = min(min_area, width * height);
     }
 
     if(possible[6]) {
-        int area = max(m1, m1 + n2 - st.second - 1) * max(m2 + st.first, n1);
-        min_area = min(min_area, area);
+        width  = max(m1, m1+n2 - st.second - 1);
+        height = max(n1, m2 + st.first);
+        min_area = min(min_area, width * height);
     }
     if(possible[7]) {
-        int area = max(m1, m1 + n2 - st.second - 1) * max(n1, n1 + m2 - st.first - 1);
-        min_area = min(min_area, area);
+        width  = max(m1, m1+n2 - st.second - 1);
+        height = max(n1, n1+m2 - st.first - 1);
+        min_area = min(min_area, width * height);
     }
 
     answer = min(min_area, answer);
