@@ -19,73 +19,74 @@ void count_func(ii st) {
         for(int j=0; j<m2; j++) {
             if(b1[st.first + i][st.second + j] and b2[i][j]) { possible[0] = false; }
 
-            if(b1[st.first + i][st.second - j] and b2[i][j]) { possible[1] = false; }
+            // if(b1[st.first + i][st.second - j] and b2[i][j]) { possible[1] = false; }
 
             if(b1[st.first - j][st.second + i] and b2[i][j]) { possible[2] = false; }
 
-            if(b1[st.first + j][st.second + i] and b2[i][j]) { possible[3] = false; }
+            // if(b1[st.first + j][st.second + i] and b2[i][j]) { possible[3] = false; }
 
             if(b1[st.first - i][st.second - j] and b2[i][j]) { possible[4] = false; }
 
-            if(b1[st.first - i][st.second + j] and b2[i][j]) { possible[5] = false; }
+            // if(b1[st.first - i][st.second + j] and b2[i][j]) { possible[5] = false; }
 
             if(b1[st.first + j][st.second - i] and b2[i][j]) { possible[6] = false; }
 
-            if(b1[st.first - j][st.second - i] and b2[i][j]) { possible[7] = false; }
+//            if(b1[st.first - j][st.second - i] and b2[i][j]) { possible[7] = false; }
         }
     }
 
     st.first -= off;
     st.second -= off;
 
-    int min_area = INT32_MAX;
+    int area = INT32_MAX;
     int width;
     int height;
+
     if(possible[0]) {
         width  = max(m1, m2 + st.second);
-        height = max(n1, n2 + st.first); // 수정한 코드
-        min_area = min(min_area, width * height);
-    }
-    if(possible[1]) {
-        width  = max(m2, m1 + m2 - st.second - 1);
         height = max(n1, n2 + st.first);
-        min_area = min(min_area, width * height);
+        area = min(area, width * height);
     }
+//    if(possible[1]) {
+//        width  = max(m2, m1 + m2 - st.second - 1);
+//        height = max(n1, n2 + st.first);
+//        area = min(area, width * height);
+//    }
 
     if(possible[2]) {
         width  = max(m1, n2 + st.second);
         height = max(n1, n1 + m2 - st.first - 1);
-        min_area = min(min_area, width * height);
+        area = min(area, width * height);
     }
-    if(possible[3]) {
-        width  = max(m1, n2 + st.second);
-        height = max(n1, m2 + st.first);
-        min_area = min(min_area, width * height);
-    }
+//    if(possible[3]) {
+//        width  = max(m1, n2 + st.second);
+//        height = max(n1, m2 + st.first);
+//        area = min(area, width * height);
+//    }
 
     if(possible[4]) {
         width  = max(m1, m1+m2 - st.second -1);
         height = max(n1, n1+n2 - st.first - 1);
-        min_area = min(min_area, width * height);
+        area = min(area, width * height);
     }
-    if(possible[5]) {
-        width  = max(m1, m2 + st.second);
-        height = max(n1, n1+n2 - st.first - 1);
-        min_area = min(min_area, width * height);
-    }
+//    if(possible[5]) {
+//        width  = max(m1, m2 + st.second);
+//        height = max(n1, n1+n2 - st.first - 1);
+//        area = min(area, width * height);
+//    }
 
     if(possible[6]) {
         width  = max(m1, m1+n2 - st.second - 1);
         height = max(n1, m2 + st.first);
-        min_area = min(min_area, width * height);
+        area = min(area, width * height);
     }
-    if(possible[7]) {
-        width  = max(m1, m1+n2 - st.second - 1);
-        height = max(n1, n1+m2 - st.first - 1);
-        min_area = min(min_area, width * height);
-    }
+//    if(possible[7]) {
+//        width  = max(m1, m1+n2 - st.second - 1);
+//        height = max(n1, n1+m2 - st.first - 1);
+//        area = min(area, width * height);
+//    }
 
-    answer = min(min_area, answer);
+    answer = min(area, answer);
 }
 
 int main()
