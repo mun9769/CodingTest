@@ -44,8 +44,8 @@ void dfs(int x, int y, int depth, int id) {
     visited[x][y]--;
     if(visited[x][y] == 0)
         sum -= board[x][y];
-
 }
+
 int main(int argc, char** argv)
 {
     cin.tie(0)->sync_with_stdio(0);
