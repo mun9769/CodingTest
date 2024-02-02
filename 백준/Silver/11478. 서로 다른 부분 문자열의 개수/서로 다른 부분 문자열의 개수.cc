@@ -1,6 +1,3 @@
-#ifndef _CRT_SECURE_NO_WARNINGS
-#define _CRT_SECURE_NO_WARNINGS
-#endif
 #include <bits/stdc++.h>
 #include <unordered_set>
 using namespace std;
@@ -12,7 +9,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cin >> str;
-    unordered_set<string> us;
+    set<string> us;
     for (int i = 0; i < str.size(); i++) {
 
         for (int sz = 1; i + sz <= str.size(); sz++) {
