@@ -120,7 +120,7 @@ int main()
 		}
 
 		int root = getRoot(a);
-		int _ = getSubtree(root);
+		int _ = getSubtree(1);
 
 		dfs(root);
 
