@@ -28,65 +28,22 @@ int getRoot(int cur) {
 	}
 	return cur;
 }
-int getSubtree(int cur) {
-	int result = 1;
-	for (int nxt : ch[cur]) {
-		result += getSubtree(nxt);
-	}
-	return subtree[cur] = result;
-}
 
-void giveToChild(int cur, int given) {
-
-	cnt[cur] += given;
-	need[cur] -= given;
-
-	for (int nxt : ch[cur]) {
-		if (need[nxt] > 0 and cnt[cur] > 1) {
-			int give = min(cnt[cur] - 1, need[nxt]);
-			cnt[cur] -= give;
-			answer += give;
-			giveToChild(nxt, give);
-		}
-	}
-}
-
-ii dfs(int cur) {  // 올린 것, 필요한 것
+void dfs(int cur) { 
+	int pid = p[cur];
 	if (ch[cur].empty()) {
-		if (cnt[cur] > 0) {
-			int tmp = cnt[cur] - 1;
-			need[cur] = 0;
-			cnt[cur] = 1;
-			return { tmp, 0 };
-		}
-		else {
-			need[cur] = 1;
-			return { 0, 1 };
-		}
+		cnt[pid] += cnt[cur] - 1;
+		answer += abs(cnt[cur] - 1);
+		cnt[cur] = 1; 
+		return;
 	}
 
-	need[cur] = 1;
 	for (int nxt : ch[cur]) {
-		ii k = dfs(nxt);
-		answer += k.first;
-		cnt[cur] += k.first;
-
-		need[cur] += k.second;
+		dfs(nxt);
 	}
-	need[cur] = max(0, need[cur] - cnt[cur]);
-
-	giveToChild(cur, 0);
-
-	assert(need[cur] >= 0);
-
-
-	if (need[cur] > 0) {
-		return { 0, need[cur] };
-	}
-	else { // no need
-		int tmp = cnt[cur] - 1;
-		cnt[cur] = 1;
-		return { tmp, need[cur] };
+	if (pid != -1) {
+		cnt[pid] += cnt[cur] - 1;
+		answer += abs(cnt[cur] - 1);
 	}
 }
 
@@ -94,19 +51,17 @@ ii dfs(int cur) {  // 올린 것, 필요한 것
 int main()
 {
 	cin.tie(0)->sync_with_stdio(0);
+	// freopen("sample_input.txt", "r", stdin);
 
 	while (true) {
 		cin >> n;
 		if (n == 0) break;
 
-		fill(p, p + Mxn, -1);
-		fill(subtree, subtree + Mxn, 0);
-		fill(cnt, cnt + Mxn, 0);
-		fill(need, need + Mxn, 0);
-		for (int i = 0; i < Mxn; i++)
-			ch[i].clear();
-		
+		memset(p, -1, sizeof(p));
+		memset(cnt, 0, sizeof(cnt));
+		memset(ch, {}, sizeof(ch));
 		answer = 0;
+		
 
 		for (int i = 0; i < n; i++) {
 			cin >> a >> b >> c;
@@ -120,7 +75,6 @@ int main()
 		}
 
 		int root = getRoot(a);
-		int _ = getSubtree(1);
 
 		dfs(root);
 
