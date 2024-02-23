@@ -21,15 +21,16 @@ int main()
         if(vis[i] == false) {
             s.push(i);
             ans++;
+            vis[i] = true;
         }
 
         while(s.size()) {
             int cur = s.top();
             s.pop();
-            vis[cur] = true;
 
             for(auto nxt: adj[cur]) {
                 if(vis[nxt] == false) {
+                    vis[nxt] = true;
                     s.push(nxt);
                 }
             }
