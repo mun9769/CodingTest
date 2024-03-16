@@ -88,8 +88,5 @@ int main(int argc, char** argv)
 
         cout << nx << ny;
     }
-    
-    
-    
    return 0;
 }
